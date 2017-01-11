@@ -19,4 +19,60 @@
         android:scaleType="centerCrop"
         android:layout_height="match_parent"
         android:layout_width="wrap_content" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="65dp">
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/latitudeTextView"
+            android:textSize="16sp"
+            android:textColor="#ffffbb33"
+            android:padding="10dp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/longitudeTextView"
+            android:textSize="16sp"
+            android:textColor="#ffffbb33"
+            android:padding="10dp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/accuracyTextView"
+            android:textSize="16sp"
+            android:textColor="#ffffbb33"
+            android:padding="10dp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/altitudeTextView"
+            android:textSize="16sp"
+            android:textColor="#ffffbb33"
+            android:padding="10dp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addressTextView"
+            android:textSize="16sp"
+            android:textColor="#ffffbb33"
+            android:padding="10dp" />
+
+
+    </LinearLayout>
 </RelativeLayout>
