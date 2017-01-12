@@ -13,12 +13,15 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     LocationManager locationManager;
 
     LocationListener locationListener;
+
+    TextView latitudeTextView, longitudeTextView, accuracyTextView, altitudeTextView, addressTextView;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -45,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        latitudeTextView = (TextView)findViewById(R.id.latitudeTextView);
+        longitudeTextView = (TextView)findViewById(R.id.longitudeTextView);
+        accuracyTextView = (TextView)findViewById(R.id.accuracyTextView);
+        altitudeTextView = (TextView)findViewById(R.id.altitudeTextView);
+        addressTextView = (TextView)findViewById(R.id.addressTextView);
+
         locationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
 
         locationListener = new LocationListener() {
@@ -52,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
             public void onLocationChanged(Location location) {
 
                 Log.i("Location", location.toString());
+
+                latitudeTextView.setText("Latitude: " + String.valueOf(location.getLatitude()));
+                longitudeTextView.setText("Longitude: " + String.valueOf(location.getLongitude()));
+                accuracyTextView.setText("Accuracy: " + String.valueOf(location.getAccuracy()));
+                altitudeTextView.setText("Altitude: " + String.valueOf(location.getAltitude()));
 
             }
 
