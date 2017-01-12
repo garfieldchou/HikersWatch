@@ -29,48 +29,43 @@
         android:layout_marginTop="65dp">
 
         <TextView
-            android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/latitudeTextView"
             android:textSize="16sp"
-            android:textColor="#ffffbb33"
+            android:textColor="#ffff4444"
             android:padding="10dp" />
 
         <TextView
-            android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/longitudeTextView"
             android:textSize="16sp"
-            android:textColor="#ffffbb33"
+            android:textColor="#ffff4444"
             android:padding="10dp" />
 
         <TextView
-            android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/accuracyTextView"
             android:textSize="16sp"
-            android:textColor="#ffffbb33"
+            android:textColor="#ffff4444"
             android:padding="10dp" />
 
         <TextView
-            android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/altitudeTextView"
             android:textSize="16sp"
-            android:textColor="#ffffbb33"
+            android:textColor="#ffff4444"
             android:padding="10dp" />
 
         <TextView
-            android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/addressTextView"
             android:textSize="16sp"
-            android:textColor="#ffffbb33"
+            android:textColor="#ffff4444"
             android:padding="10dp" />
 
 
