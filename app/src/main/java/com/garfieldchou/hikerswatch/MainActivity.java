@@ -3,6 +3,8 @@ package com.garfieldchou.hikerswatch;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,6 +16,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,6 +72,58 @@ public class MainActivity extends AppCompatActivity {
                 longitudeTextView.setText("Longitude: " + String.valueOf(location.getLongitude()));
                 accuracyTextView.setText("Accuracy: " + String.valueOf(location.getAccuracy()));
                 altitudeTextView.setText("Altitude: " + String.valueOf(location.getAltitude()));
+
+                Geocoder geooder = new Geocoder(getApplicationContext(), Locale.getDefault());
+
+                try {
+
+                    List<Address> addresses = geooder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+
+                    if(addresses != null && addresses.size() > 0) {
+
+                        Log.i("placeInfo", addresses.get(0).toString());
+
+                        String address = "";
+
+                        if(addresses.get(0).getFeatureName() != null) {
+
+                            address += addresses.get(0).getFeatureName() + ", ";
+
+                        }
+
+                        if(addresses.get(0).getThoroughfare() != null) {
+
+                            address += addresses.get(0).getThoroughfare();
+
+                        }
+
+                        if(addresses.get(0).getLocality() != null) {
+
+                            address += "\r\n" + addresses.get(0).getLocality();
+
+                        }
+
+                        if(addresses.get(0).getAdminArea() != null) {
+
+                            address += "\r\n" + addresses.get(0).getAdminArea();
+
+                        }
+
+                        if(addresses.get(0).getCountryName() != null) {
+
+                            address += "\r\n" + addresses.get(0).getCountryName();
+
+                        }
+
+                        addressTextView.setText("Address:\r\n" + address);
+
+                    }
+
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+
+                }
 
             }
 
