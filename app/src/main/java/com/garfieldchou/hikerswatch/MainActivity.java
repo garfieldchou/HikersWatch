@@ -99,6 +99,13 @@ public class MainActivity extends AppCompatActivity {
 
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
+                Location userLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                latitudeTextView.setText("Latitude: " + String.valueOf(userLocation.getLatitude()));
+                longitudeTextView.setText("Longitude: " + String.valueOf(userLocation.getLongitude()));
+                accuracyTextView.setText("Accuracy: " + String.valueOf(userLocation.getAccuracy()));
+                altitudeTextView.setText("Altitude: " + String.valueOf(userLocation.getAltitude()));
+
             }
 
         }
