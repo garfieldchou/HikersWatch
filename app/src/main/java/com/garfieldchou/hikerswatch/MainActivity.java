@@ -29,6 +29,67 @@ public class MainActivity extends AppCompatActivity {
 
     TextView latitudeTextView, longitudeTextView, accuracyTextView, altitudeTextView, addressTextView;
 
+    public void setLayoutTextView (Location location) {
+
+        latitudeTextView.setText("Latitude: " + String.valueOf(location.getLatitude()));
+        longitudeTextView.setText("Longitude: " + String.valueOf(location.getLongitude()));
+        accuracyTextView.setText("Accuracy: " + String.valueOf(location.getAccuracy()));
+        altitudeTextView.setText("Altitude: " + String.valueOf(location.getAltitude()));
+
+        Geocoder geooder = new Geocoder(getApplicationContext(), Locale.getDefault());
+
+        try {
+
+            List<Address> addresses = geooder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+
+            if(addresses != null && addresses.size() > 0) {
+
+                Log.i("placeInfo", addresses.get(0).toString());
+
+                String address = "";
+
+                if(addresses.get(0).getFeatureName() != null) {
+
+                    address += addresses.get(0).getFeatureName() + ", ";
+
+                }
+
+                if(addresses.get(0).getThoroughfare() != null) {
+
+                    address += addresses.get(0).getThoroughfare();
+
+                }
+
+                if(addresses.get(0).getLocality() != null) {
+
+                    address += "\r\n" + addresses.get(0).getLocality();
+
+                }
+
+                if(addresses.get(0).getAdminArea() != null) {
+
+                    address += "\r\n" + addresses.get(0).getAdminArea();
+
+                }
+
+                if(addresses.get(0).getCountryName() != null) {
+
+                    address += "\r\n" + addresses.get(0).getCountryName();
+
+                }
+
+                addressTextView.setText("Address:\r\n" + address);
+
+            }
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -68,62 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.i("Location", location.toString());
 
-                latitudeTextView.setText("Latitude: " + String.valueOf(location.getLatitude()));
-                longitudeTextView.setText("Longitude: " + String.valueOf(location.getLongitude()));
-                accuracyTextView.setText("Accuracy: " + String.valueOf(location.getAccuracy()));
-                altitudeTextView.setText("Altitude: " + String.valueOf(location.getAltitude()));
-
-                Geocoder geooder = new Geocoder(getApplicationContext(), Locale.getDefault());
-
-                try {
-
-                    List<Address> addresses = geooder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-
-                    if(addresses != null && addresses.size() > 0) {
-
-                        Log.i("placeInfo", addresses.get(0).toString());
-
-                        String address = "";
-
-                        if(addresses.get(0).getFeatureName() != null) {
-
-                            address += addresses.get(0).getFeatureName() + ", ";
-
-                        }
-
-                        if(addresses.get(0).getThoroughfare() != null) {
-
-                            address += addresses.get(0).getThoroughfare();
-
-                        }
-
-                        if(addresses.get(0).getLocality() != null) {
-
-                            address += "\r\n" + addresses.get(0).getLocality();
-
-                        }
-
-                        if(addresses.get(0).getAdminArea() != null) {
-
-                            address += "\r\n" + addresses.get(0).getAdminArea();
-
-                        }
-
-                        if(addresses.get(0).getCountryName() != null) {
-
-                            address += "\r\n" + addresses.get(0).getCountryName();
-
-                        }
-
-                        addressTextView.setText("Address:\r\n" + address);
-
-                    }
-
-                } catch (IOException e) {
-
-                    e.printStackTrace();
-
-                }
+                setLayoutTextView(location);
 
             }
 
@@ -157,12 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
-                Location userLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-                latitudeTextView.setText("Latitude: " + String.valueOf(userLocation.getLatitude()));
-                longitudeTextView.setText("Longitude: " + String.valueOf(userLocation.getLongitude()));
-                accuracyTextView.setText("Accuracy: " + String.valueOf(userLocation.getAccuracy()));
-                altitudeTextView.setText("Altitude: " + String.valueOf(userLocation.getAltitude()));
+                setLayoutTextView(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
 
             }
 
