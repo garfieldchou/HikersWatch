@@ -19,6 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
     LocationListener locationListener;
 
+    public void updateLocationInfo(Location location) {
+
+        Log.i("LocationInfo", location.toString());
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onLocationChanged(Location location) {
 
-                Log.i("LocationInfo", location.toString());
+                updateLocationInfo(location);
 
             }
 
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProviderDisabled(String provider) {
 
             }
-        }
+        };
 
         if (Build.VERSION.SDK_INT < 23) {
 
@@ -63,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
             } else {
 
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+
+                Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                if (location != null) {
+
+                    updateLocationInfo(location);
+
+                }
 
             }
         }
