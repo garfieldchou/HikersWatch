@@ -28,10 +28,11 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="21dp"
         android:id="@+id/textView"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@android:color/background_dark" />
 
     <TextView
-        android:text="Latitude:  12.23"
+        android:text="Latitude:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
@@ -43,7 +44,7 @@
         android:textSize="@dimen/activity_horizontal_margin" />
 
     <TextView
-        android:text="Longitude:  12.23"
+        android:text="Longitude:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/latTextView"
@@ -51,6 +52,42 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:id="@+id/lonTextView"
+        android:textColor="@android:color/background_light"
+        android:textSize="@dimen/activity_horizontal_margin" />
+
+    <TextView
+        android:text="Accuracy:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lonTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:id="@+id/accTextView"
+        android:textColor="@android:color/background_light"
+        android:textSize="@dimen/activity_horizontal_margin" />
+
+    <TextView
+        android:text="Altitude:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/accTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:id="@+id/altTextView"
+        android:textColor="@android:color/background_light"
+        android:textSize="@dimen/activity_horizontal_margin" />
+
+    <TextView
+        android:text="Address: \n 123 Fake Street \n Fake Town"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/altTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:id="@+id/addressTextView"
         android:textColor="@android:color/background_light"
         android:textSize="@dimen/activity_horizontal_margin" />
 
