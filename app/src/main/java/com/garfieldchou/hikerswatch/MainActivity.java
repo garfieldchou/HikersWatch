@@ -3,6 +3,8 @@ package com.garfieldchou.hikerswatch;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,6 +16,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,6 +68,24 @@ public class MainActivity extends AppCompatActivity {
         altTextView.setText("Altitude: " + location.getAltitude());
 
         accTextView.setText("Accuracy: " + location.getAccuracy());
+
+        Geocoder geoCoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+
+        try {
+
+            List<Address> listAddresses = geoCoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+
+            if (listAddresses != null && listAddresses.size() > 0) {
+
+                Log.i("PlaceInfo", listAddresses.get(0).toString());
+
+            }
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+            
+        }
 
     }
 
